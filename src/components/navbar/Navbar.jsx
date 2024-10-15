@@ -14,19 +14,19 @@ export default function Navbar() {
           <div className="hidden md:flex space-x-4">
             <a
               href="#"
-              className="text-white hover:bg-blue-500 px-3 py-2 rounded-md text-sm font-medium"
+              className="text-white hover:bg-purple-900 px-3 py-2 rounded-md text-sm font-medium"
             >
               Home
             </a>
             <a
               href="#"
-              className="text-white hover:bg-blue-500 px-3 py-2 rounded-md text-sm font-medium"
+              className="text-white hover:bg-purple-900 px-3 py-2 rounded-md text-sm font-medium"
             >
               About
             </a>
             <a
               href="#"
-              className="text-white hover:bg-blue-500 px-3 py-2 rounded-md text-sm font-medium"
+              className="text-white hover:bg-purple-900 px-3 py-2 rounded-md text-sm font-medium"
             >
               Services
             </a>
@@ -36,7 +36,7 @@ export default function Navbar() {
             <button
               onClick={() => setIsOpen(!isOpen)}
               type="button"
-              className="text-white hover:bg-blue-500 px-3 py-2 rounded-md focus:outline-none"
+              className="text-white hover:bg-purple-900 px-3 py-2 rounded-md focus:outline-none"
               aria-controls="mobile-menu"
               // aria-expanded={isOpen}
             >
@@ -64,25 +64,25 @@ export default function Navbar() {
           <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
             <a
               href="#"
-              className="text-white hover:bg-blue-500 block px-3 py-2 rounded-md text-base font-medium"
+              className="text-white hover:bg-purple-900 block px-3 py-2 rounded-md text-base font-medium"
             >
               Home
             </a>
             <a
               href="#"
-              className="text-white hover:bg-blue-500 block px-3 py-2 rounded-md text-base font-medium"
+              className="text-white hover:bg-purple-900 block px-3 py-2 rounded-md text-base font-medium"
             >
               About
             </a>
             <a
               href="#"
-              className="text-white hover:bg-blue-500 block px-3 py-2 rounded-md text-base font-medium"
+              className="text-white hover:bg-purple-900 block px-3 py-2 rounded-md text-base font-medium"
             >
               Services
             </a>
             <a
               href="#"
-              className="text-white hover:bg-blue-500 block px-3 py-2 rounded-md text-base font-medium"
+              className="text-white hover:bg-purple-900 block px-3 py-2 rounded-md text-base font-medium"
             >
               Contact
             </a>

@@ -1,13 +1,19 @@
 import React, { useState } from "react";
 
-export default function Filter() {
+export default function Filter({ searchQuery, onSearch }) {
   const [searchkey, setSearchkey] = useState([]);
   const [filterPrice, setFilterPrice] = useState([]);
   const [filterType, setFilterType] = useState([]);
 
+  const handleChange = (e) => {
+    onSearch(e.target.value);  // Pass the search value up to parent
+    setSearchkey(e.target.value)
+  };
+
   const resetFilter=()=>{
-    setFilterPrice("")
-    setFilterType("")
+   setSearchkey('')
+   onSearch('');  
+   window.location.reload()
   }
   return (
     <div>
@@ -28,9 +34,9 @@ export default function Filter() {
               type="text"
               name="searchkey"
               value={searchkey}
-              onChange={(e) => setSearchkey(e.target.value)}
+              onChange={handleChange}
               id="searchkey"
-              placeholder="Search here"
+              placeholder="Search books..."
               className="px-8 py-3 w-full rounded-md bg-violet-0 border-transparent outline-0 text-sm"
             />
           </div>
@@ -38,7 +44,7 @@ export default function Filter() {
             <p className="font-medium">Filters</p>
             <button
               onClick={() => resetFilter()}
-              className="px-4 py-2 bg-gray-50hover:bg-gray-200 text-gray-800 text-sm font-medium rounded-md"
+              className="px-4 py-2 bg-gray-50hover:bg-gray-200 text-gray-800 text-sm font-medium border-2 rounded-md"
             >
               Reset Filter
             </button>

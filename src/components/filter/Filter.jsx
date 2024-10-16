@@ -1,20 +1,28 @@
 import React, { useState } from "react";
 
-export default function Filter({ searchQuery, onSearch }) {
+export default function Filter({
+  searchQuery,
+  onSearch,
+  uniqueSubjects,
+  onFilterChange,
+  filterType,
+}) {
   const [searchkey, setSearchkey] = useState([]);
-  const [filterPrice, setFilterPrice] = useState([]);
-  const [filterType, setFilterType] = useState([]);
 
-  const handleChange = (e) => {
-    onSearch(e.target.value);  // Pass the search value up to parent
-    setSearchkey(e.target.value)
+  const handleSearchChange = (e) => {
+    onSearch(e.target.value); // Pass the search value up to parent
+    setSearchkey(e.target.value);
   };
+  // const handleDropDrownChange = (e) => {
+  //   onSearch(e.target.value);  // Pass the search value up to parent
+  //   setFilterType(e.target.value)
+  // };
 
-  const resetFilter=()=>{
-   setSearchkey('')
-   onSearch('');  
-   window.location.reload()
-  }
+  const resetFilter = () => {
+    setSearchkey("");
+    onSearch("");
+    window.location.reload();
+  };
   return (
     <div>
       <div className=" container mx-auto px-4 mt-5 ">
@@ -34,7 +42,7 @@ export default function Filter({ searchQuery, onSearch }) {
               type="text"
               name="searchkey"
               value={searchkey}
-              onChange={handleChange}
+              onChange={handleSearchChange}
               id="searchkey"
               placeholder="Search books..."
               className="px-8 py-3 w-full rounded-md bg-violet-0 border-transparent outline-0 text-sm"
@@ -53,25 +61,15 @@ export default function Filter({ searchQuery, onSearch }) {
             <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4 mt-4">
               <select
                 value={filterType}
-                onChange={(e) => setFilterType(e.target.value)}
+                onChange={(e) => onFilterChange(e.target.value)}
                 className="px-4 py-3 w-full rounded-md bg-gray-50 border-transparent outline-0 focus:border-gray-500 focus:bg-white focus:ring-0 text-sm"
               >
-                <option value="phone">phone</option>
-                <option value="mobile">mobile</option>
-
-                {/* {categoryitem.map((item, index) => (
-                  <option key={index} value={item}>
-                    {item}
+                {uniqueSubjects.map((subject) => (
+                  <option key={subject} value={subject}>
+                    {subject}
                   </option>
-                ))} */}
+                ))}
               </select>
-              {/* <select value={filterPrice} onChange={(e)=>setFilterPrice(e.target.value)} className="px-4 py-3 w-full rounded-md bg-gray-50 border-transparent outline-0  focus:border-gray-500 focus:bg-white focus:ring-0 text-sm" style={{ backgroundColor: mode === 'dark' ? 'rgb(64 66 70)' : '', color: mode === 'dark' ? 'white' : '', }}>
-                                {product.map((item, index) => (
-                                    
-                                        <option key={index} value={item.price}>{item.price}</option>
-                                    
-                                ))}
-                            </select> */}
             </div>
           </div>
         </div>

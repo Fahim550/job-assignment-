@@ -4,16 +4,7 @@ export default function Card(props) {
   const book = props.books;
   console.log("singleBook", book);
 
-  // const [searchQuery, setSearchQuery] = useState('');  
-
-  // const handleSearch = (query) => {
-  //   setSearchQuery(query);
-  // };
-
-  // // Filter books based on search query (e.g., by title or author)
-  // const filteredBooks = book.filter(book =>
-  //   book.title.toLowerCase().includes(searchQuery.toLowerCase())
-  // );
+  
 
   return (
     <div className="w-[200px] sm:w-[208px] md:w-[245px]  border-2 shadow-sm mt-2 rounded-xl mx-auto ">

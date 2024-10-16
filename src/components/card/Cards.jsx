@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
-import Card from "./Card";
 import Filter from "../filter/Filter";
+import Card from "./Card";
 
 export default function Cards() {
   const [books, setBooks] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [cardsPerPage, setCardsPerPage] = useState(8);
-    const [searchQuery, setSearchQuery] = useState('');  
+  const [searchQuery, setSearchQuery] = useState("");
+  const [filterType, setFilterType] = useState("");
   useEffect(() => {
     fetch("https://gutendex.com/books")
       .then((res) => res.json())
@@ -28,22 +29,29 @@ export default function Cards() {
 
   // Flatten the nested books array to manage pagination easily
   const flatBooks = books.flatMap((book) => book.results);
+  // Extract unique subjects from books
+  const uniqueSubjects = [
+    ...new Set(flatBooks.flatMap((book) => book.bookshelves)),
+  ];
 
   // Slice  for the current page
   const currentBooks = flatBooks.slice(indexOfFirstBook, indexOfLastBook);
-  console.log("currentBooks", currentBooks);
-
-
+  // console.log("currentBooks", currentBooks);
 
   const handleSearch = (query) => {
     setSearchQuery(query);
   };
+  const handleFilterChange = (filter) => {
+    setFilterType(filter);
+  };
 
   // Filter books based on search query (e.g., by title or author)
-  const filteredBooks = currentBooks.filter(book =>
-    book.title.toLowerCase().includes(searchQuery.toLowerCase())
+  const filteredBooks = currentBooks.filter(
+    (book) =>
+      book.title.toLowerCase().includes(searchQuery.toLowerCase()) &&
+      (filterType === "" || book.bookshelves.includes(filterType))
   );
-  console.log("filteredBooks",filteredBooks);
+  console.log("filteredBooks", filteredBooks);
 
   // Function to handle page change
   const handlePageChange = (pageNumber) => {
@@ -53,7 +61,13 @@ export default function Cards() {
   };
   return (
     <div className="justify-center mx-auto">
-      <Filter searchQuery={searchQuery} onSearch={handleSearch} />
+      <Filter
+        searchQuery={searchQuery}
+        onSearch={handleSearch}
+        uniqueSubjects={uniqueSubjects}
+        onFilterChange={handleFilterChange}
+        filterType={filterType}
+      />
       <ul className="p-6 grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-4 gap-2">
         {filteredBooks.map((singleBook, index) => (
           <Card key={index} books={singleBook} />

@@ -1,10 +1,15 @@
-import React, { useState } from "react";
+import React from "react";
 
 export default function Card(props) {
   const book = props.books;
   console.log("singleBook", book);
 
-  
+  const addCart=(book)=>{
+    const storedBooks = JSON.parse(localStorage.getItem('books')) || [];
+    const updatedBooks = [...storedBooks, book];
+    localStorage.setItem('books', JSON.stringify(updatedBooks));
+    alert("click book",book)
+  }
 
   return (
     <div className="w-[200px] sm:w-[208px] md:w-[245px]  border-2 shadow-sm mt-2 rounded-xl mx-auto ">
@@ -21,7 +26,6 @@ export default function Card(props) {
               ? book.title.slice(0, 70) + "..."
               : book.title}
           </h1>
-
           <div className="flex m-0 p-0 flex-col">
             <div className="flex m-0 my-1">
               <p className="flex font-bold text-xs md:text-lg  ">
@@ -35,7 +39,7 @@ export default function Card(props) {
               </p>
             </div>
           </div>
-            Subject :
+          Subject :
           <div className="flex m-0 p-0  h-[105px]">
             {/* <div className="flex flex-col  m-0 p-1.5  overflow-auto"> */}
             <p className="flex flex-col font-bold text-xs md:text-md overflow-auto">
@@ -50,7 +54,10 @@ export default function Card(props) {
           </div>
         </div>
       </div>
-      <div className="bg-purple-900 mx-auto flex justify-center rounded-b-lg ">
+      <div
+        className="bg-purple-900 mx-auto flex justify-center rounded-b-lg "
+        onClick={() => addCart(book)}
+        >
         <svg
           xmlns="http://www.w3.org/2000/svg"
           className="w-8 h-8 hover:scale-110 transition-scale-110  duration-300 ease-in-out"
@@ -61,7 +68,6 @@ export default function Card(props) {
             d="M47.6 300.4L228.3 469.1c7.5 7 17.4 10.9 27.7 10.9s20.2-3.9 27.7-10.9L464.4 300.4c30.4-28.3 47.6-68 47.6-109.5v-5.8c0-69.9-50.5-129.5-119.4-141C347 36.5 300.6 51.4 268 84L256 96 244 84c-32.6-32.6-79-47.5-124.6-39.9C50.5 55.6 0 115.2 0 185.1v5.8c0 41.5 17.2 81.2 47.6 109.5z"
           />
         </svg>
-        {/* onClick={() => addCart(item)} */}
       </div>
     </div>
   );

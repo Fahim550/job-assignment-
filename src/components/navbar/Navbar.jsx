@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link} from "react-router-dom";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -24,13 +25,12 @@ export default function Navbar() {
             >
               About
             </a>
-            <a
-              href="#"
+            <Link
+              to="/wishlist"
               className="text-white hover:bg-purple-900 px-3 py-2 rounded-md text-sm font-medium"
             >
-              Services
-            </a>
-            
+              wishlist
+            </Link>
           </div>
           <div className="flex md:hidden">
             <button

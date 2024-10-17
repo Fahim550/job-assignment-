@@ -13,10 +13,7 @@ export default function Filter({
     onSearch(e.target.value); // Pass the search value up to parent
     setSearchkey(e.target.value);
   };
-  // const handleDropDrownChange = (e) => {
-  //   onSearch(e.target.value);  // Pass the search value up to parent
-  //   setFilterType(e.target.value)
-  // };
+  
 
   const resetFilter = () => {
     setSearchkey("");
@@ -52,7 +49,7 @@ export default function Filter({
             <p className="font-medium">Filters</p>
             <button
               onClick={() => resetFilter()}
-              className="px-4 py-2 bg-gray-50hover:bg-gray-200 text-gray-800 text-sm font-medium border-2 rounded-md"
+              className="px-4 py-2 bg-gray-50hover:bg-gray-200 text-red-600 text-sm font-medium border-2 border-red-400 rounded-md"
             >
               Reset Filter
             </button>

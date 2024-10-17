@@ -1,4 +1,5 @@
 import Home from "../../pages/home/Home";
+import BookDetails from "../bookDetails/BookDetails";
 import WishList from "../wishlist/WishList";
 
 export const routers=[
@@ -13,5 +14,9 @@ export const routers=[
     {
       path: "/wishlist",
       element: <WishList/>,
+    },
+    {
+      path: "/bookdetails/:id",
+      element: <BookDetails/>,
     },
 ]

@@ -1,19 +1,25 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function Card(props) {
   const book = props.books;
+  const navigate = useNavigate(); 
   console.log("singleBook", book);
 
-  const addCart=(book)=>{
+  const addWishList=(book)=>{
     const storedBooks = JSON.parse(localStorage.getItem('books')) || [];
     const updatedBooks = [...storedBooks, book];
     localStorage.setItem('books', JSON.stringify(updatedBooks));
-    alert("click book",book)
+    alert("Add Book",book)
   }
+  const handleBookClick = (book) => {
+    // Navigate to the book details page with the book ID
+    navigate(`/bookdetails/${book.id}`, { state: { book } });
+  };
 
   return (
-    <div className="w-[200px] sm:w-[208px] md:w-[245px]  border-2 shadow-sm mt-2 rounded-xl mx-auto ">
-      <div>
+    <div className="w-[200px] sm:w-[208px] md:w-[245px]  border-2 shadow-sm mt-2 rounded-xl mx-auto " >
+      <div onClick={() => handleBookClick(book)}>
         <div className="h-[200px] sm:h-[260px] flex justify-center items-center">
           <img
             src={book.formats["image/jpeg"]}
@@ -42,7 +48,8 @@ export default function Card(props) {
           Subject :
           <div className="flex m-0 p-0  h-[105px]">
             {/* <div className="flex flex-col  m-0 p-1.5  overflow-auto"> */}
-            <p className="flex flex-col font-bold text-xs md:text-md overflow-auto">
+            
+            <p className="flex flex-col font-bold text-xs md:text-md overflow-auto w-full">
               {book.subjects.map((subject, id) => (
                 // console.log("author name", authors.name),
                 <li key={id} className="">
@@ -56,7 +63,7 @@ export default function Card(props) {
       </div>
       <div
         className="bg-purple-900 mx-auto flex justify-center rounded-b-lg "
-        onClick={() => addCart(book)}
+        onClick={() => addWishList(book)}
         >
         <svg
           xmlns="http://www.w3.org/2000/svg"

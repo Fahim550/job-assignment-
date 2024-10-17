@@ -5,7 +5,6 @@ import Card from "./Card";
 export default function Cards() {
   const [books, setBooks] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const [cardsPerPage, setCardsPerPage] = useState(8);
   const [searchQuery, setSearchQuery] = useState("");
   const [filterType, setFilterType] = useState("");
   useEffect(() => {
@@ -51,7 +50,7 @@ export default function Cards() {
       book.title.toLowerCase().includes(searchQuery.toLowerCase()) &&
       (filterType === "" || book.bookshelves.includes(filterType))
   );
-  console.log("filteredBooks", filteredBooks);
+  // console.log("filteredBooks", filteredBooks);
 
   // Function to handle page change
   const handlePageChange = (pageNumber) => {

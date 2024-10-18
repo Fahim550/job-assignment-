@@ -5,9 +5,8 @@ export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [wishList, setWishList] = useState([]);
   useEffect(() => {
-    const storedWishList =(JSON.parse(localStorage.getItem("books") || []));
+    const storedWishList =(JSON.parse(localStorage.getItem("books"))) || [];
     setWishList(storedWishList);
-    // console.log("wishList", wishList.length);
   },[]);
   return (
     <nav className="bg-purple-800 shadow-md fixed w-full z-50">

@@ -9,11 +9,19 @@ export default function Cards() {
   const [filterType, setFilterType] = useState("");
   useEffect(() => {
     fetch("https://gutendex.com/books")
-      .then((res) => res.json())
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error("Network response was not ok");
+        }
+        return res.json();
+      })
       .then((data) => {
         setBooks((prevBooks) => [...prevBooks, data]);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        console.log(err);
+        setBooks([]);
+      });
     console.log("books", books);
   }, []);
 

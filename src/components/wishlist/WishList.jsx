@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
 import Navbar from "../navbar/Navbar";
+import { useNavigate } from "react-router-dom";
 
 export default function WishList() {
   const [wishListBooks, setWishListBooks] = useState([]);
+  const navigate = useNavigate(); 
   useEffect(() => {
     const books = JSON.parse(localStorage.getItem("books") || []);
     setWishListBooks(books);
@@ -19,6 +21,10 @@ export default function WishList() {
       alert("No books in the wishlist to remove");
     }
   };
+  const handleBookClick = (book) => {
+    // Navigate to the book details page with the book ID
+    navigate(`/bookdetails/${book.id}`, { state: { book } });
+  };
   return (
     <div>
       <Navbar />
@@ -31,6 +37,7 @@ export default function WishList() {
               <div
                 key={book.id}
                 className="border p-2 rounded shadow-lg flex flex-col sm:flex sm:flex-row gap-4 sm:gap-16 items-center bg-white w-38 md:w-full h-68 md:h-36"
+                onClick={() => handleBookClick(book)}
               >
                 <img
                   src={book.formats["image/jpeg"]}
